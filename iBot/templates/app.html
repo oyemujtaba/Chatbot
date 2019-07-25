@@ -1,0 +1,41 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Chat Bot UI</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head>
+
+<body>
+        <div class="headerBar">
+                <p class="title">CHATBOT</p>
+            </div>
+            <!-- first text hello fixed -->
+    <div class="chat-output" id="chat-output">
+        <div class="bot-message">
+          <div style="background-color: red" class="message">Hi! I'm a bot. What's up?</div>
+        </div>
+               {% for i in Chat1 %}
+                 <div class="">
+                 <div class="{% cycle 'usermessage' 'bot-message'%}"></div>
+                 <p  class="{% cycle 'message ' 'message bot-message'%}">{{i}} </p>
+                 </div>
+              {% endfor %}
+      </div>
+      
+      <div class="chat-input">
+        <form method="POST" action="{% url 'iBot:home' %}">{% csrf_token %}
+          <input style="width: 100%;
+          padding: 12px 20px;
+          margin: 8px 0;
+          box-sizing: border-box;
+          border: none;
+          background-color: #9bc3b4;
+          color: white;" id = "user-input-form" type="text" name="myvalue">
+          <input id = "user-input" type = "submit" value= "send" class="user-input" placeholder="Talk to the bot.">
+        </form>
+      </div>
+</body>
+</html>
